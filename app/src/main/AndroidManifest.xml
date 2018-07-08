@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.gabriel.exameni">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/MyMaterialTheme">
+        <activity android:name=".vista.Menu_principal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".vista.Clientes" />
+        <activity android:name=".vista.Productos" />
+        <activity android:name=".vista.Facturacion" />
+        <activity android:name=".vista.agregarCliente" />
+        <activity android:name=".vista.agregarProducto" />
+        <activity android:name=".vista.modificarProducto" />
+        <activity android:name=".vista.modificarCliente" />
+        <activity android:name=".vista.agregarFactura" />
+        <activity android:name=".vista.detallesFactura"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Polacos S.A</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_search">Buscar</string>
+    <string name="drawer_open">Abrir</string>
+    <string name="drawer_close">Cerrar</string>
+    <string name="agregar_contacto">Agregar contacto</string>
+    <string name="nav_item_home">Inicio</string>
+    <string name="nombre">Nombre completo</string>
+    <string name="telefono">Número de teléfono</string>
+    <string name="agregar">Agregar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="msg_no_productos">No hay productos!</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+    </string-array>
+
+    <string name="title_home">Inicio</string>
+</resources>
