@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gabriel.exameni">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +28,7 @@
         <activity android:name=".vista.modificarProducto" />
         <activity android:name=".vista.modificarCliente" />
         <activity android:name=".vista.agregarFactura" />
-        <activity android:name=".vista.detallesFactura"></activity>
+        <activity android:name=".vista.detallesFactura" />
     </application>
 
 </manifest>

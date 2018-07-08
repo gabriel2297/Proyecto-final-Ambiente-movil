@@ -23,10 +23,11 @@ public class ControlDatos_Class {
     /*
     * Metodo para guardar clientes
     */
-    public void guardarCliente(String nombre, String telefono){
+    public void guardarCliente(String nombre, String telefono, String pais){
         Clientes_Class cliente = new Clientes_Class();
         cliente.setNombre(nombre);
         cliente.setTelefono(telefono);
+        cliente.setPais(pais);
         controlDB.insertarCliente(cliente);
     }
 

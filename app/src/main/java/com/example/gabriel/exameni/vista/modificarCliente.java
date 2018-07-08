@@ -91,6 +91,7 @@ public class modificarCliente extends AppCompatActivity {
         telefonoCliente = (EditText) findViewById(R.id.telefonoCliente);
         telefonoCliente.setInputType(InputType.TYPE_CLASS_PHONE);
         telefonoCliente.setText(cliente.getTelefono());
+
     }
 
     /*

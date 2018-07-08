@@ -55,6 +55,7 @@ public class SQLite_Class extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("nombre_cliente", cliente.getNombre());
         values.put("telefono_cliente", cliente.getTelefono());
+        values.put("pais_cliente", cliente.getPais());
 
         long id = db.insert(Clientes_Class.TABLE_NAME, null, values);
         db.close();
@@ -80,7 +81,7 @@ public class SQLite_Class extends SQLiteOpenHelper {
                 cliente.setId(cursor.getInt(cursor.getColumnIndex(Clientes_Class.COLUMNA_ID)));
                 cliente.setNombre(cursor.getString(cursor.getColumnIndex(Clientes_Class.COLUMNA_NOMBRE)));
                 cliente.setTelefono(cursor.getString(cursor.getColumnIndex(Clientes_Class.COLUMNA_TELEFONO)));
-
+                cliente.setPais(cursor.getString(cursor.getColumnIndex(Clientes_Class.COLUMNA_PAIS)));
                 // agregar cliente al arraylist de clientes
                 listaClientes.add(cliente);
             }while(cursor.moveToNext());
@@ -104,6 +105,7 @@ public class SQLite_Class extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(Clientes_Class.COLUMNA_NOMBRE, cliente.getNombre());
         values.put(Clientes_Class.COLUMNA_TELEFONO, cliente.getTelefono());
+        values.put(Clientes_Class.COLUMNA_PAIS, cliente.getPais());
 
         // hacer el cambio en base de datos
         return db.update(Clientes_Class.TABLE_NAME, values, Clientes_Class.COLUMNA_ID + "=?",
