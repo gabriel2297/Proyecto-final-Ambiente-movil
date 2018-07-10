@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class agregarCliente extends AppCompatActivity {
     private EditText nombre, telefono;
     private Button cancelBtn, agregarBtn;
     private Spinner paises_spinner;
-    private ArrayList<String> listaPaises;
+    private ArrayList<String> paisesLista = new ArrayList<>();
     private ControlDatos_Class controlDatos = new ControlDatos_Class(this);
 
     @Override
@@ -44,18 +45,6 @@ public class agregarCliente extends AppCompatActivity {
 
         // inicializar activity
         inicializarPantalla();
-
-        // llamar al web service
-        web_service web_service = new web_service();
-        web_service.execute();
-
-        // inicializar spinner
-        paises_spinner = (Spinner) findViewById(R.id.paises_spinner);
-        listaPaises = web_service.getPaisesLista();
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item,
-                listaPaises);
-        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        paises_spinner.setAdapter(adaptador);
 
         // controlar clicks al boton de cancelar
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -67,34 +56,40 @@ public class agregarCliente extends AppCompatActivity {
 
         // controlar click al boton de agregar
         agregarBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 String pais_seleccionado = (String) paises_spinner.getSelectedItem();
+
                 if(nombre.getText().toString().length() == 0){
                     Toast.makeText(agregarCliente.this, "Por favor indique un nombre para el cliente", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
                 else if(telefono.getText().toString().length() == 0){
                     Toast.makeText(agregarCliente.this, "Por favor indique un numero telefonico.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else if(pais_seleccionado == null){
+
+                else if(pais_seleccionado.length() == 0){
                     Toast.makeText(agregarCliente.this, "Por favor indique un pais.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else if(pais_seleccionado != null){
-                    if(pais_seleccionado.length() == 0){
-                        Toast.makeText(agregarCliente.this, "Por favor indique un pais.", Toast.LENGTH_SHORT).show();
-                    }
-                }
+
                 else {
-                    Toast.makeText(agregarCliente.this, pais_seleccionado, Toast.LENGTH_SHORT).show();
                     controlDatos.guardarCliente(nombre.getText().toString(), telefono.getText().toString(), pais_seleccionado);
                     Toast.makeText(agregarCliente.this, "Cliente agregado", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(agregarCliente.this, Clientes.class));
                 }
             }
+
         });
     }
 
-    private void inicializarPantalla(){
+    /*
+     * Metodo que se encarga de inicializar la pantalla con todos los componentes
+     */
+    private void inicializarPantalla() {
         // inicializar toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -109,7 +104,35 @@ public class agregarCliente extends AppCompatActivity {
         cancelBtn = (Button) findViewById(R.id.cancelBtn);
         agregarBtn = (Button) findViewById(R.id.agregarBtn);
 
+        // llamar al web service
+        web_service web_service = new web_service();
+        web_service.execute();
 
+    }
+
+
+    /*
+     * Metodo que se encarga de inicializar el spinner con la informacion del web service.
+     */
+    private void crearSpinner(){
+        if(!paisesLista.isEmpty()){
+            // buscar costa rica y ponerlo como valor por defecto en el spinner
+            int seleccion = 0;
+            for (int x = 0; x < paisesLista.size(); x++){
+                if(paisesLista.get(x).equals("Costa Rica")){
+                    seleccion = x;
+                    break;
+                }
+            }
+            paises_spinner = (Spinner) findViewById(R.id.paises_spinner);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, paisesLista);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            paises_spinner.setAdapter(adapter);
+            paises_spinner.setSelection(seleccion);
+        }
+        else{
+            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /*
@@ -129,17 +152,13 @@ public class agregarCliente extends AppCompatActivity {
         }
     }
 
-    public class web_service extends AsyncTask<Void, Void, Void> {
+    /*
+     * Inner class que se encarga de consumir un REST API de todos los paises del mundo
+     */
+    private class web_service extends AsyncTask<Void, Void, Void> {
         String api_url = "https://restcountries.eu/rest/v2/all?fields=name";
         String textBuffer = "";
         String textFinal = "";
-        ArrayList<String> paisesLista = new ArrayList<>();
-
-
-        // devolver el arrayList de paises
-        public ArrayList<String> getPaisesLista(){
-            return paisesLista;
-        }
 
         @Override
         protected Void doInBackground(Void... params){
@@ -187,6 +206,8 @@ public class agregarCliente extends AppCompatActivity {
                     // agregarlo al arrayList
                     paisesLista.add(objetoJSON.getString("name"));
                 }
+                // se termino la ejecucion del web service, crear el spinner
+                crearSpinner();
             }
             catch(JSONException e){
                 e.printStackTrace();
