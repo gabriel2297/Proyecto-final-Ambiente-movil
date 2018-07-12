@@ -7,15 +7,20 @@
     tools:context=".vista.detallesFactura">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/windowBackground"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,9 +33,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:text="Número de factura: "
+                android:textColor="@android:color/black"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:text="Número de factura: " />
 
             <TextView
                 android:id="@+id/idFactura"
@@ -38,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textColor="@android:color/black"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -53,9 +59,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:text="Fecha y hora de compra: "
+                android:textColor="@android:color/black"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:text="Fecha y hora de compra: " />
 
             <TextView
                 android:id="@+id/fechaFactura"
@@ -63,7 +70,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                android:textColor="@android:color/black"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"/>
         </LinearLayout>
 
         <LinearLayout
@@ -77,9 +85,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:text="Nombre del cliente:"
+                android:textColor="@android:color/black"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:text="Nombre del cliente:" />
 
             <TextView
                 android:id="@+id/nombreFactura"
@@ -87,7 +96,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                android:textColor="@android:color/black"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"/>
 
         </LinearLayout>
 
@@ -102,9 +112,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:text="Nombre del producto: "
+                android:textColor="@android:color/black"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:text="Nombre del producto: " />
 
             <TextView
                 android:id="@+id/productoFactura"
@@ -112,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:textColor="@android:color/black"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
         </LinearLayout>
@@ -126,23 +138,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cantidad comprada:"
+                android:ems="10"
+                android:textColor="@android:color/black"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:text="Cantidad comprada:" />
 
             <TextView
                 android:id="@+id/cantidadFactura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:ems="10"
+                android:textColor="@android:color/black"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/eliminarFacturaBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Eliminar factura" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/eliminarFacturaBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:text="Eliminar factura" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

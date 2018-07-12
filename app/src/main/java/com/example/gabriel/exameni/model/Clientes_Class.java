@@ -64,6 +64,6 @@ public class Clientes_Class implements Serializable {
 
     @Override
     public String toString(){
-        return "ID: " + id + " | Cliente: "+ nombre;
+        return nombre;
     }
 }
