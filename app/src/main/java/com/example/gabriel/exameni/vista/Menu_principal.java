@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Formatter;
@@ -36,6 +37,7 @@ public class Menu_principal extends AppCompatActivity implements View.OnClickLis
     private ProgressBar progressBar;
     private String ip;
     private String pais;
+    private boolean costaRica = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class Menu_principal extends AppCompatActivity implements View.OnClickLis
         web_service web_service = new web_service();
         web_service.execute();
 
-        // dormir por dos segundos (no mostrar pantalla aun)
+        // dormir por dos segundos hasta verificar IP de Costa Rica (no mostrar pantalla aun)
         try{
             Thread.sleep(2000);
         }catch(InterruptedException e){
@@ -66,7 +68,7 @@ public class Menu_principal extends AppCompatActivity implements View.OnClickLis
         // buscar toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Polacos S.A");
+        getSupportActionBar().setTitle("QueSorbeto S.A");
 
 
         // fijar el click listener a los botones
@@ -158,6 +160,7 @@ public class Menu_principal extends AppCompatActivity implements View.OnClickLis
 
                 // si el pais de acceso no es Costa Rica, sacar al usuario de la app
                 if(!pais.equals("Costa Rica")){
+                    Log.d("==>CERRAR APP", "Se detectó intento de uso de App desde "+pais+". IP: "+ip);
                     System.exit(0);
                 }
 
