@@ -1,6 +1,8 @@
-# Polacos App - Universidad Fidélitas - II cuatrimestre 2018
+# QueSorbeto App - Universidad Fidélitas - II cuatrimestre 2018
 
-Aplicacion de polacos para el curso de programación para dispositivos móviles. Universidad Fidélitas. 
+Proyecto final del curso de programación para dispositivos móviles. Universidad Fidélitas. 
 
-Gabriel Umaña Frías
-# polacos_appWebService
+Integrantes: 
+- Gabriel Umaña Frías
+
+Aplicacion para empresa ficticia 'QueSorbeto S.A'.
